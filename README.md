@@ -52,3 +52,68 @@
 ---
 
 ## リポジトリ構成
+
+# src/simulation.py
+
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')  # Docker環境でも動くように（画面表示なし）
+import matplotlib.pyplot as plt
+
+# ===== パラメータ =====
+periods = 50
+ubi = 100                  # 毎期の政府支出（UBI）
+production = 80            # 初期供給力
+growth_rate = 0.02         # 経済成長率
+inflation_sensitivity = 0.05
+decay_rate = 0.00          # 半減期通貨（例：0.02で2%減衰）
+
+# ===== 初期値 =====
+money_supply = 0
+price_level = 1.0
+
+money_history = []
+price_history = []
+supply_history = []
+time = []
+
+# ===== シミュレーション =====
+for t in range(periods):
+    # 政府による通貨発行
+    money_supply += ubi
+
+    # 半減期通貨（任意）
+    money_supply *= (1 - decay_rate)
+
+    # 実体経済の成長
+    current_supply = production * ((1 + growth_rate) ** t)
+
+    # 需要と供給
+    demand = money_supply
+    supply = current_supply
+
+    # インフレ計算
+    inflation = max(0, (demand - supply) / supply) * inflation_sensitivity
+    price_level *= (1 + inflation)
+
+    # 記録
+    money_history.append(money_supply)
+    price_history.append(price_level)
+    supply_history.append(supply)
+    time.append(t)
+
+# ===== グラフ作成 =====
+plt.figure()
+
+plt.plot(time, money_history, label="Money Supply")
+plt.plot(time, supply_history, label="Real Supply")
+plt.plot(time, price_history, label="Price Level")
+
+plt.title("Government Money Model Simulation")
+plt.xlabel("Time")
+plt.ylabel("Value")
+plt.legend()
+plt.grid()
+
+# ===== 保存 =====
+plt.savefig("results/result.png", dpi=300)
