@@ -1,36 +1,54 @@
-# Transition to Government-Issued Currency
-## Problem
+# 政府発行通貨への移行モデル  
+### 借金に依存しない貨幣システムの再現可能な研究
 
-Modern economies rely on debt-based money creation.
-
-This creates:
-- Persistent government debt
-- Tax dependency
-- Structural instability
-## Proposal
-
-This project proposes a transition to government-issued currency:
-
-- No debt-based issuance
-- Direct money creation
-- Inflation-controlled supply
-## Simulation
-
-A computational model is provided to test the system dynamics.
--
-## Reproducibility
-
-```bash
-docker build -t gov-model .
-docker run gov-model
 ---
 
-## ⑥ 結果
+## 概要
 
-```md
-## Results
+本プロジェクトは、借入（負債）に依存した通貨発行から、政府が直接通貨を発行する仕組みへの移行を提案するものである。
 
-See results/result.png for simulation output.
-## Paper
+現代の貨幣システムでは、通貨は主に信用（負債）を通じて創造される。この仕組みは機能している一方で、政府債務の累積、税収依存、そして経済の不安定性といった構造的課題を抱えている。
 
-paper: ([https://drive.google.com/file/d/1cNh0wgf2ykZ1CJcdGt-RlVth2BisUpgk/view?usp=drivesdk])
+本リポジトリでは、負債を伴わない通貨発行モデルを提示し、その挙動をシミュレーションによって検証可能な形で示す。
+
+---
+
+## 問題提起
+
+現行の貨幣システムは以下の特徴を持つ：
+
+- 借入（負債）に基づく通貨発行  
+- 財政維持のための税収依存構造  
+- 政府債務の長期的蓄積  
+- デフレ・スタグフレーション下での不安定性  
+
+これらは政策の自由度を制限し、構造的なリスクを生む要因となる。
+
+---
+
+## 提案モデル
+
+本研究では、以下の特徴を持つ政府発行通貨モデルを提案する：
+
+- **負債を伴わない通貨発行**  
+- **直接的な通貨供給（UBI的分配）**  
+- **実体経済の供給能力によるインフレ制約**  
+- **国債依存からの分離**
+
+本モデルでは「財源」を税収ではなく、制御された通貨供給として再定義する。
+
+---
+
+## シミュレーション
+
+本リポジトリには、以下の関係を可視化するシミュレーションが含まれる：
+
+- 通貨供給の増加  
+- 実体経済の供給制約  
+- インフレの発生条件  
+
+通貨供給が実体供給を上回る場合に、価格水準が上昇する様子を確認できる。
+
+---
+
+## リポジトリ構成
